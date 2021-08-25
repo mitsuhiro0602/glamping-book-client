@@ -1,39 +1,51 @@
-import { useState } from 'react';
-import {toast} from 'react-toastify'
-import {login } from '../actions/auth'
+import React, { useState } from 'react'
+import { toast } from 'react-toastify';
+import { login } from '../actions/auth';
 import LoginForm from '../components/LoginForm'
-const Login = () => {
-  const [email, setEmail ] = useState('');
-  const [password, setPassword ] = useState('');
+import { useDispatch } from 'react-redux';
+
+const Login = ({history}) => {
+    const [email, setEmail] = useState('0hornet0@gmail.com')
+  const [password, setPassword] = useState('mitsu0602')
+
+  const dispatch = useDispatch()
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('SEND LOGIN DATA', {email, password})
     try {
-      const res = await login({
-        email, 
+      let res = await login({
+        email,
         password
       });
-        console.log('REGISTER USER ===> ', res)
-      toast.success('ログインしました');
-    } catch (err) {
+      if(res.data) {
+        console.log('SAVE USER RES IN REDUX AND LOCAL STORAGE THEN REDIRECT ===>');
+        console.log(res.data);
+        window.localStorage.setItem('auth', JSON.stringify(res.data));
+        dispatch({
+          type: 'LOGGED_IN_USER',
+          payload: res.data,
+        });
+      };
+      toast.success('Login success');
+      history.push('/dashboard');
+    } catch(err) {
       console.log(err);
       if(err.response.status === 400) toast.error(err.response.data);
     }
+  };
 
-  }
   return (
     <>
-      <div className="container-fluid h1 p-5 text-center">
-        <h1>Login</h1>
+      <div className="container-fluid bg-secondary p-5 text-center">
+        <h1>Login Page</h1>
       </div>
-
       <div className="container">
         <div className="row">
           <div className="col-md-6 offset-md-3">
             <LoginForm
               handleSubmit={handleSubmit}
-              email={email}
-              setEmail={setEmail}
+              email={email} setEmail={setEmail}
               password={password}
               setPassword={setPassword}
             />
@@ -44,4 +56,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Login;
