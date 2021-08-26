@@ -72,9 +72,8 @@ const GlampingCreateForm = (
             tags={tags} 
             onChange={( newTags) => setTags(newTags)}
           />
-          
           <Select
-            onChange={(value) => setValues({...values, bed: person})} 
+            onChange={(value) => setValues({...values, person: value})} 
             placeholder="定員人数"
             className="w-100 m-2"
             size="large"

@@ -5,12 +5,25 @@ import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux'
 import { HomeOutlined } from '@ant-design/icons'
 import { createConnectAccount } from '../actions/stripe'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { sellerGlampings, deleteGlamping } from '../actions/glamping'
 import { toast } from 'react-toastify'
+import SmallCard from '../components/cards/SmallCard'
 
 const DashBoardSeller = () => {
   const { auth } = useSelector(state => ({...state}))
+  const [glampings, setGlampings] = useState([])
   const [loading, setLoading ] = useState(false);
+
+  useEffect(() => {
+    loadSellersGlampings()
+  }, [])
+
+  const loadSellersGlampings = async() => {
+    let { data } = await sellerGlampings(auth.token)
+    setGlampings(data);
+    console.log({data})
+  }
 
   const handleClick = async() => {
     setLoading(true)
@@ -26,19 +39,40 @@ const DashBoardSeller = () => {
     }
   }
 
+  const handleGlampingDelete = async (glampingId) => {
+    if(!window.confirm('本当に削除しますか？')) return;
+    deleteGlamping(auth.token, glampingId).then(res => {
+      toast.success('グランピング施設を削除しました。')
+      loadSellersGlampings()
+    })
+  }
+
   const connected = () => (
-    <div className="container-fluid">
-      <div className="row">
-        <div className="col-md-10">
-          <h2>登録したグランピング施設一覧</h2>
-        </div>
-        <div className="col-md-2">
-          <Link to="/glampings/new" className="btn btn-primary">
-            + Add New
-          </Link>
+    <>
+      <div className="container-fluid">
+        <div className="row">
+          <div className="col-md-10">
+            <h2>登録したグランピング施設一覧</h2>
+          </div>
+          <div className="col-md-2">
+            <Link to="/glampings/new" className="btn btn-primary">
+              + Add New
+            </Link>
+          </div>
         </div>
       </div>
-    </div>
+      <div className="row">
+        {glampings.map(g => (
+          <SmallCard 
+            key={g._id} 
+            g={g} 
+            showViewMoreButton={false}
+            owner={true}
+            handleGlampingDelete={handleGlampingDelete}
+          />
+        ))}
+      </div>
+    </>
   )
 
   const notConnected = () => (

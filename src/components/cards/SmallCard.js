@@ -8,7 +8,12 @@ import { Link, useHistory } from 'react-router-dom';
 import {EditOutlined, DeleteOutlined} from '@ant-design/icons'
 
 
-const SmallCard = ({g, handleGlampingDelete = (f) => f}) => {
+const SmallCard = ({
+  g,
+  handleGlampingDelete = (f) => f,
+  owner = false,
+  showViewMoreButton = true,
+}) => {
   const fromTime = moment(g.from).format('YYYY-MM-DD')
   const toTime = moment(g.to).format('YYYY-MM-DD')
   const history = useHistory();
@@ -55,19 +60,25 @@ const SmallCard = ({g, handleGlampingDelete = (f) => f}) => {
               <p className="card-text">〜{g.person}人</p>
               <p className="card-text">{fromTime}〜{toTime}まで</p>
               <div className="d-flex justify-content-between h4">
-                <button 
-                  onClick={() =>　history.push(`/glamping/${g._id}`)} 
-                  className="btn btn-primary"
-                >
-                  詳細を確認する
-                </button>
-                <Link to={`glamping/edit${g._id}`}>
-                  <EditOutlined className="text-warning"/>
-                </Link>
-                <DeleteOutlined 
-                  onClick={() => handleGlampingDelete(g._id)}
-                  className="text-danger"
-                />
+                {showViewMoreButton &&(
+                  <button 
+                    onClick={() =>　history.push(`/glamping/${g._id}`)} 
+                    className="btn btn-primary"
+                  >
+                    詳細を確認する
+                  </button>
+                )}
+                {owner && ( 
+                  <>
+                    <Link to={`glamping/edit/${g._id}`}>
+                      <EditOutlined className="text-warning"/>
+                    </Link>
+                    <DeleteOutlined 
+                      onClick={() => handleGlampingDelete(g._id)}
+                      className="text-danger"
+                    />
+                  </>
+                )}
               </div>
             </div>
           </div>
