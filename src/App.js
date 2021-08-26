@@ -12,6 +12,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import DashBoard from "./user/DashBoard";
 import DashBoardSeller from "./user/DashboardSeller";
 import NewGlamping from "./glampings/NewGlamping";
+import StripeCallback from "./stripe/StripeCallback";
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
       <PrivateRoute exact path="/dashboard" component={DashBoard} />
       <PrivateRoute exact path="/dashboard/seller" component={DashBoardSeller} />
       <PrivateRoute exact path="/glampings/new" component={NewGlamping} />
+      <PrivateRoute exact path="/stripe/callback" component={StripeCallback} />
     </Switch>
     </BrowserRouter>
   );
