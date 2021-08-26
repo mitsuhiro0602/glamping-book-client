@@ -20,7 +20,7 @@ const GlampingCreateForm = (
 ) => {
 
   // eslint-disable-next-line no-unused-vars
-  const { title, content, price, location, redirect_url, type } = values;
+  const { title, content, price, location, redirect_url, type, person } = values;
   return (
     <>
       <form onSubmit={handleSubmit}>
@@ -74,8 +74,8 @@ const GlampingCreateForm = (
           />
           
           <Select
-            onChange={(value) => setValues({...values, bed: value})} 
-            placeholder="定員人数" 
+            onChange={(value) => setValues({...values, bed: person})} 
+            placeholder="定員人数"
             className="w-100 m-2"
             size="large"
           >

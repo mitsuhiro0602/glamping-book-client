@@ -24,7 +24,7 @@ const NewGlamping = () => {
     price: '',
     from: '',
     to: '',
-    bed: '',
+    person: '',
     tag: '',
   });
 
@@ -38,7 +38,7 @@ const NewGlamping = () => {
     price,
     from,
     to,
-    bed
+    person
   } = values
 
   const [preview, setPreview] = useState('https://via.placeholder.com/100x100.png?text=PREVIEW')
@@ -57,7 +57,7 @@ const NewGlamping = () => {
     image && glampingDate.append('image', image)
     glampingDate.append('from', from)
     glampingDate.append('to', to)
-    glampingDate.append('bed', bed)
+    glampingDate.append('person', person)
     
     console.log([...glampingDate])
     
