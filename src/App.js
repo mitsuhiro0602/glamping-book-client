@@ -13,6 +13,11 @@ import DashBoard from "./user/DashBoard";
 import DashBoardSeller from "./user/DashboardSeller";
 import NewGlamping from "./glampings/NewGlamping";
 import StripeCallback from "./stripe/StripeCallback";
+import EditGlamping from "./glampings/EditGlamping";
+import ViewGlamping from "./glampings/ViewGlamping";
+
+import StripeCancel from "./stripe/StripeCancel";
+import StripeSuccess from "./stripe/StripeSuccess";
 
 
 const App = () => {
@@ -27,7 +32,11 @@ const App = () => {
       <PrivateRoute exact path="/dashboard" component={DashBoard} />
       <PrivateRoute exact path="/dashboard/seller" component={DashBoardSeller} />
       <PrivateRoute exact path="/glampings/new" component={NewGlamping} />
+      <PrivateRoute exact path="/glamping/edit/:glampingId" component={EditGlamping} />
+      <PrivateRoute exact path="/glamping/:glampingId" component={ViewGlamping} />
       <PrivateRoute exact path="/stripe/callback" component={StripeCallback} />
+      <PrivateRoute exact path="/stripe/success/:glampingId" component={StripeSuccess} />
+      <PrivateRoute exact path="/stripe/cancel" component={StripeCancel} />
     </Switch>
     </BrowserRouter>
   );

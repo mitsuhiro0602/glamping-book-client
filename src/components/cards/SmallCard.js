@@ -70,7 +70,7 @@ const SmallCard = ({
                 )}
                 {owner && ( 
                   <>
-                    <Link to={`glamping/edit/${g._id}`}>
+                    <Link to={`/glamping/edit/${g._id}`}>
                       <EditOutlined className="text-warning"/>
                     </Link>
                     <DeleteOutlined 

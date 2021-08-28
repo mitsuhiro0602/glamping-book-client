@@ -59,7 +59,7 @@ const ConnectNav = () => {
               <Card className="bg-light pt-1">
                 {balance && balance.pending && balance.pending.map((bp, i) => (
                   <span key={i} className="lead">
-                    {currencyFormatter(bp)}
+                    {currencyFormatter(bp)}円
                   </span>
                 ))}
               </Card>

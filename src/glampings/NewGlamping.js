@@ -4,6 +4,7 @@ import "@pathofdev/react-tag-input/build/index.css";
 import {createGlamping} from '../actions/glamping'
 import { useSelector } from "react-redux";
 import GlampingCreateForm from "../components/forms/GlampingCreateForm";
+import Image from 'react-image-resizer';
 
 
 const NewGlamping = () => {
@@ -46,23 +47,23 @@ const NewGlamping = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
 
-    let glampingDate = new FormData();
-    glampingDate.append('title', title)
-    glampingDate.append('content', content)
-    glampingDate.append('tags', tags)
-    glampingDate.append('location', location)
-    glampingDate.append('type', type)
-    glampingDate.append('redirect_url', redirect_url)
-    glampingDate.append('price', price)
-    image && glampingDate.append('image', image)
-    glampingDate.append('from', from)
-    glampingDate.append('to', to)
-    glampingDate.append('person', person)
+    let glampingData = new FormData();
+    glampingData.append('title', title)
+    glampingData.append('content', content)
+    glampingData.append('tags', tags)
+    glampingData.append('location', location)
+    glampingData.append('type', type)
+    glampingData.append('redirect_url', redirect_url)
+    glampingData.append('price', price)
+    image && glampingData.append('image', image)
+    glampingData.append('from', from)
+    glampingData.append('to', to)
+    glampingData.append('person', person)
     
-    console.log([...glampingDate])
+    console.log([...glampingData])
     
     try {
-      let res = await createGlamping(token, glampingDate)
+      let res = await createGlamping(token, glampingData)
       console.log('GLAMPING CREATE RES' ,res)
       toast.success('新しいグランピング施設を登録しました')
       setTimeout(() => {
@@ -106,14 +107,19 @@ const NewGlamping = () => {
               setValues={setValues}
               redirect_url={redirect_url}
               type={type}
+              from={from}
+              to={to}
+              person={person}
             /> 
           </div>
           <div className="col-md-2">
-            <img 
+            <Image
               src={preview} 
               alt="preview_image" 
               className="img img-fluid m-2" 
-            /> 
+              height={ 250 }
+              width={ 400 }
+            />
             <pre>{JSON.stringify(values, null, 4)}</pre>
             <pre>{JSON.stringify(tags, null, 4)}</pre>
           </div>
