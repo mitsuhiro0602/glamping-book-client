@@ -33,7 +33,7 @@ const App = () => {
       <PrivateRoute exact path="/dashboard/seller" component={DashBoardSeller} />
       <PrivateRoute exact path="/glampings/new" component={NewGlamping} />
       <PrivateRoute exact path="/glamping/edit/:glampingId" component={EditGlamping} />
-      <PrivateRoute exact path="/glamping/:glampingId" component={ViewGlamping} />
+      <Route exact path="/glamping/:glampingId" component={ViewGlamping} />
       <PrivateRoute exact path="/stripe/callback" component={StripeCallback} />
       <PrivateRoute exact path="/stripe/success/:glampingId" component={StripeSuccess} />
       <PrivateRoute exact path="/stripe/cancel" component={StripeCancel} />

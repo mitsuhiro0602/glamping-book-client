@@ -21,7 +21,7 @@ const ConnectNav = () => {
 
   useEffect(() => {
     getAccountBalance(auth.token).then(res => {
-      console.log(res);
+      // console.log(res);
       setBalance(res.data);
     });
   }, []);

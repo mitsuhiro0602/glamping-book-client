@@ -1,10 +1,28 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import ConnectNav from '../components/ConnectNav'
 import DashboardNav from '../components/DashboardNav'
+import { userGlampingBookings } from '../actions/glamping'
+import { useSelector } from 'react-redux'
+import BookingCard from '../components/cards/BookingCard'
 
 
 const DashBoard = () => {
+  const { 
+    auth: {token},
+  } = useSelector((state) => ({...state}));
+
+  const [booking, setBooking] = useState([]);
+
+  useEffect(() => {
+    loadUserBookings()
+  }, [])
+
+  const loadUserBookings = async () => {
+    const res = await userGlampingBookings(token);
+    console.log(res.data);
+    setBooking(res.data);
+  }
   return (
     <>
       <div className="container-fluid bg-secondary p-5">
@@ -22,6 +40,17 @@ const DashBoard = () => {
             <Link to="/" className="btn btn-primary">グランピング施設一覧</Link>
           </div>
         </div>
+      </div>
+      <div className="row">
+        {booking.map(b => (
+          <BookingCard 
+            key={b._id} 
+            glamping={b.glamping} 
+            session={b.session} 
+            orderedBy={b.orderedBy} 
+          />
+        ))}
+        {/* <pre>{JSON.stringify(booking, null, 4)}</pre> */}
       </div>
     </>
   )

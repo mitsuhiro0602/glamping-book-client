@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import {read, diffDays} from '../actions/glamping';
+import {read, diffDays, isAlreadyBooked} from '../actions/glamping';
 import Image from 'react-image-resizer';
 import moment from 'moment';
 import { useSelector } from 'react-redux';
@@ -11,12 +11,21 @@ const ViewGlamping = ({ match, history }) => {
   const [glamping, setGlamping] = useState({})
   const [image, setImage] = useState("")
   const [loading, setLoading ] = useState(false);
+  const [alreadyBooked, setAlreadyBooked] = useState(false);
 
   const { auth } = useSelector((state) => ({...state}))
   useEffect(() => {
-
     locadSellerGlamping();
   }, [])
+
+  useEffect(() => {
+    if(auth && auth.token) {
+      isAlreadyBooked(auth.token, match.params.glampingId).then((res) => {
+        // console.log(res);
+        if(res.data.ok)  setAlreadyBooked(true);
+      });
+    }
+  }, []);
 
   const locadSellerGlamping = async() => {
     let res = await read(match.params.glampingId)
@@ -27,8 +36,13 @@ const ViewGlamping = ({ match, history }) => {
 
   const handleClick = async (e) => {
     e.preventDefault()
+    if(!auth || !auth.token) {
+      history.push('/login');
+      return;
+    }
+
     setLoading(true);
-    if(!auth) history.pushState('/login')
+    if(!auth) history.push('/login')
     console.log(auth.token, match.params.glampingId)
     let res = await getSessionId(auth.token, match.params.glampingId)
     // console.log('get sessionid response', res.data.sessionId);
@@ -70,11 +84,13 @@ const ViewGlamping = ({ match, history }) => {
             <button
               onClick={handleClick} 
               className="btn btn-primary btn-block btn-lg mt-3"
-              disabled={loading}
+              disabled={loading || alreadyBooked}
             >
               {
                 loading 
-                ? 'Loading...' 
+                ? 'Loading...'
+                : alreadyBooked
+                ? '既に予約しています'
                 : auth && auth.token 
                 ? '予約する' 
                 : 'ログインして予約する'

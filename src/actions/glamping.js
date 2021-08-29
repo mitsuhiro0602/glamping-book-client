@@ -24,14 +24,17 @@ export const sellerGlampings = async (token) => await axios.get(`${process.env.R
   },
 });
 
-export const deleteGlamping = async (token, glampingId) => await axios.delete(`${process.env.REACT_APP_API}/delete-glamping/${glampingId}`, {
-  headers: {
-    Authorization: `Bearer ${token}`,
-  },
-});
+export const deleteGlamping = async (token, glampingId) => 
+  await axios.delete(`${process.env.REACT_APP_API}/delete-glamping/${glampingId}`, 
+  {
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }
+);
 
 export const read = async(glampingId) => 
-await axios.get(`${process.env.REACT_APP_API}/glamping/${glampingId}`);
+  await axios.get(`${process.env.REACT_APP_API}/glamping/${glampingId}`);
 
 export const updateGlamping = async(token, data, glampingId) =>
   await axios.put(`${process.env.REACT_APP_API}/update-glamping/${glampingId}`, data, {
