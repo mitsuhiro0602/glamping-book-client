@@ -51,7 +51,6 @@ const DashBoard = () => {
             orderedBy={b.orderedBy} 
           />
         ))}
-        {/* <pre>{JSON.stringify(booking, null, 4)}</pre> */}
       </div>
     </>
   )

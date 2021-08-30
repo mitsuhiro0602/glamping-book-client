@@ -26,7 +26,6 @@ const Home = () => {
       </div>
       <div className="container-fluid">
         <br />
-        {/* <pre>{JSON.stringify(glampings, null, 4)}</pre> */}
         {glampings.map((g) => (
           <SmallCard key={g._id} g={g} />
         ))}
