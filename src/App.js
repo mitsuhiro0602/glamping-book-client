@@ -18,6 +18,7 @@ import ViewGlamping from "./glampings/ViewGlamping";
 
 import StripeCancel from "./stripe/StripeCancel";
 import StripeSuccess from "./stripe/StripeSuccess";
+import SearchResult from "./glampings/SearchResult";
 
 
 const App = () => {
@@ -34,6 +35,7 @@ const App = () => {
       <PrivateRoute exact path="/glampings/new" component={NewGlamping} />
       <PrivateRoute exact path="/glamping/edit/:glampingId" component={EditGlamping} />
       <Route exact path="/glamping/:glampingId" component={ViewGlamping} />
+      <Route exact path="/search-result" component={SearchResult} />
       <PrivateRoute exact path="/stripe/callback" component={StripeCallback} />
       <PrivateRoute exact path="/stripe/success/:glampingId" component={StripeSuccess} />
       <PrivateRoute exact path="/stripe/cancel" component={StripeCancel} />
