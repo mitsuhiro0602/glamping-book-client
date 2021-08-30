@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { AccordionCollapse } from 'react-bootstrap';
 
 export const createConnectAccount = async (token) => 
   await axios.post(

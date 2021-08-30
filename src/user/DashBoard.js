@@ -16,6 +16,7 @@ const DashBoard = () => {
 
   useEffect(() => {
     loadUserBookings()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const loadUserBookings = async () => {

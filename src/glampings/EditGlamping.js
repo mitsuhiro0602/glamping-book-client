@@ -1,13 +1,11 @@
 import { useState, useEffect } from "react";
 
 import { toast } from 'react-toastify';
-import { DatePicker, Select } from "antd";
 import { read, updateGlamping } from '../actions/glamping';
 import { useSelector } from "react-redux";
 import GlampingEditForm from "../components/forms/GlampingEditForm";
 import Image from 'react-image-resizer';
 
-const { Option } = Select;
 
 const EditGlamping = ({match}) => {
 
@@ -47,6 +45,7 @@ const EditGlamping = ({match}) => {
 
   useEffect(() => {
     locadSellerGlamping()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const locadSellerGlamping = async() => {

@@ -4,8 +4,7 @@ import React from 'react'
 import Image from 'react-image-resizer';
 import { diffDays } from "../../actions/glamping";
 import moment from 'moment';
-import { Link, useHistory } from 'react-router-dom';
-import {EditOutlined, DeleteOutlined} from '@ant-design/icons'
+
 import { useState } from 'react';
 import OrderModal from '../modals/OrderModal';
 

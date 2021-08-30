@@ -16,6 +16,7 @@ const ViewGlamping = ({ match, history }) => {
   const { auth } = useSelector((state) => ({...state}))
   useEffect(() => {
     locadSellerGlamping();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   useEffect(() => {
@@ -25,6 +26,7 @@ const ViewGlamping = ({ match, history }) => {
         if(res.data.ok)  setAlreadyBooked(true);
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const locadSellerGlamping = async() => {

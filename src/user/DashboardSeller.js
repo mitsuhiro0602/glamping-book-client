@@ -17,6 +17,7 @@ const DashBoardSeller = () => {
 
   useEffect(() => {
     loadSellersGlampings()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const loadSellersGlampings = async() => {

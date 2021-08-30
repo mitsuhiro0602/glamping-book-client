@@ -1,15 +1,11 @@
 import {useState, useEffect} from 'react'
 import queryString from 'query-string'
-import { Link } from 'react-router-dom';
 import Search from '../components/forms/Search'
 import { searchListings } from '../actions/glamping';
 import SmallCard from '../components/cards/SmallCard'
 
 const SearchResult = () => {
-  
-  const [searchLocation, setSearchLocation] = useState('')
-  const [searchDate, setSearchDate] = useState('')
-  const [searchPerson, setSearchPerson] = useState('')
+
   const [glampings, setGlampings] = useState([])
 
   useEffect(() => {
@@ -19,6 +15,7 @@ const SearchResult = () => {
       console.log('SEARCH RESULTS ===>>', res.data);
       setGlampings(res.data)
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [window.location.search]);
   return (
     <>

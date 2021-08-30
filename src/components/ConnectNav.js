@@ -14,6 +14,7 @@ const {Meta} = Card;
 const {Ribbon} = Badge;
 
 const ConnectNav = () => {
+  // eslint-disable-next-line no-unused-vars
   const [loading, setLoading ] = useState(false);
   const [balance, setBalance] = useState(0)
   const {auth} = useSelector((state) => ({...state}));
@@ -24,6 +25,7 @@ const ConnectNav = () => {
       // console.log(res);
       setBalance(res.data);
     });
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handlePayoutSettings = async () => {
