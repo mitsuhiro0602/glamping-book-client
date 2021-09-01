@@ -116,7 +116,6 @@ const EditGlamping = ({match}) => {
               height={250}
               width={400}
             />
-            <pre>{JSON.stringify(values, null , 4)}</pre>
           </div>
         </div>
       </div>
