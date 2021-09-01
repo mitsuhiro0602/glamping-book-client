@@ -1,3 +1,4 @@
+// eslint-disable-next-line no-unused-vars
 import React, {FC ,useEffect, useState} from 'react'
 import styled from 'styled-components'
 import LocationInput from './LocationInput';
@@ -35,6 +36,7 @@ const StaySearchForm = ({
       setLocationInputValue(defaultLocationValue)
       setGuestValue(defaultPerson)
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // style
@@ -66,6 +68,7 @@ const StaySearchForm = ({
     `};
   `;
 
+  // eslint-disable-next-line no-unused-vars
   const renderForm = () => {
     return (
       <SearchFormContainer>

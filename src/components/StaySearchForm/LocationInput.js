@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
 import tw from 'twin.macro';
@@ -22,9 +23,11 @@ const LocationInput = ({
 
   useEffect(() =>{
     if(eventClickOutsideDiv) {
+      // eslint-disable-next-line no-whitespace-before-property
       document.removeEventListener("click". eventClickOutsideDiv);
     }
     ShowPopver && document.addEventListener("click", eventClickOutsideDiv)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [ShowPopver])
 
   const eventClickOutsideDiv = (event) => {

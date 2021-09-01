@@ -1,11 +1,15 @@
 import React, {useState, useEffect} from 'react'
 import styled from 'styled-components';
 import {
+  // eslint-disable-next-line no-unused-vars
   AnchorDirectionShape,
   DateRangePicker,
+  // eslint-disable-next-line no-unused-vars
   FocusedInputShape,
 } from "react-dates";
+// eslint-disable-next-line no-unused-vars
 import { DateRage } from "./StaySearchForm";
+// eslint-disable-next-line no-unused-vars
 import { FC } from "react";
 import ClearDataButton from "./ClearDataButton";
 import useWindowSize from "hooks/useWindowResize";
@@ -38,6 +42,7 @@ const StayDatesRangeInput = ({
     if (onChange) {
       onChange(stateDate);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [stateDate]);
 
   const handleClearData = (field) => {

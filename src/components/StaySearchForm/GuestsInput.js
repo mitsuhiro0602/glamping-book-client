@@ -22,6 +22,7 @@ const GuestsInput = ({
         person
       });
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [person])
 
   const totalGuest = person
