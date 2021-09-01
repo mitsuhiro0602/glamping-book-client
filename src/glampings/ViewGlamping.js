@@ -22,7 +22,6 @@ const ViewGlamping = ({ match, history }) => {
   useEffect(() => {
     if(auth && auth.token) {
       isAlreadyBooked(auth.token, match.params.glampingId).then((res) => {
-        // console.log(res);
         if(res.data.ok)  setAlreadyBooked(true);
       });
     }
@@ -33,7 +32,6 @@ const ViewGlamping = ({ match, history }) => {
     let res = await read(match.params.glampingId)
     setGlamping(res.data)
     setImage(`${process.env.REACT_APP_API}/glamping/image/${res.data._id}`)
-    console.log(res)
   }
 
   const handleClick = async (e) => {
@@ -45,14 +43,11 @@ const ViewGlamping = ({ match, history }) => {
 
     setLoading(true);
     if(!auth) history.push('/login')
-    console.log(auth.token, match.params.glampingId)
     let res = await getSessionId(auth.token, match.params.glampingId)
-    // console.log('get sessionid response', res.data.sessionId);
     const stripe = await loadStripe(process.env.REACT_APP_STRIPE_KEY)
     stripe.redirectToCheckout({
       sessionId: res.data.sessionId,
     })
-    .then((result) => console.log(result));
   };
   return (
     <>

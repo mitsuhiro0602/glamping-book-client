@@ -23,18 +23,15 @@ const DashBoardSeller = () => {
   const loadSellersGlampings = async() => {
     let { data } = await sellerGlampings(auth.token)
     setGlampings(data);
-    console.log({data})
   }
 
   const handleClick = async() => {
     setLoading(true)
     try {
       let res = await createConnectAccount(auth.token)
-      console.log(res)
       window.location.href = res.data;
 
     } catch(err) {
-      console.log(err);
       toast.error("Stripeとの接続に失敗しました。再施行してください")
       setLoading(false);
     }

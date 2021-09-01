@@ -52,7 +52,6 @@ const EditGlamping = ({match}) => {
     let res = await read(match.params.glampingId)
     setValues({...values, ...res.data })
     setPreview(`${process.env.REACT_APP_API}/glamping/image/${res.data._id}`)
-    console.log(res)
   }
 
   const handleSubmit = async(e) => {
@@ -74,13 +73,11 @@ const EditGlamping = ({match}) => {
 
     try {
       let res = await updateGlamping(token, glampingData, match.params.glampingId)
-      console.log('GLAMPING UPDATE RES' ,res)
       toast.success(`${res.data.title}を更新しました`)
       setTimeout(() => {
         window.location.reload();
       }, 1000)
     } catch(err) {
-      console.log(err)
       toast.error(err.response.data);
     }
   }

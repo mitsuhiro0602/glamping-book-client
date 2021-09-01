@@ -19,8 +19,8 @@
 https://glamping-book-client-h9kb2gm85-mitsuhiro0602.vercel.app/
 
 ### sellerアカウント
-- email: Seller_test@gmail.com
-- password: Seller_test
+- email: 0hornet0@gmail.com
+- password: mitsu0602
 
 ### buyerアカウント
 - email: Buyer_test@gmail.com

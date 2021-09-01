@@ -12,15 +12,12 @@ const Login = ({history}) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('SEND LOGIN DATA', {email, password})
     try {
       let res = await login({
         email,
         password
       });
       if(res.data) {
-        console.log('SAVE USER RES IN REDUX AND LOCAL STORAGE THEN REDIRECT ===>');
-        console.log(res.data);
         window.localStorage.setItem('auth', JSON.stringify(res.data));
         dispatch({
           type: 'LOGGED_IN_USER',
@@ -30,7 +27,6 @@ const Login = ({history}) => {
       toast.success('Login success');
       history.push('/dashboard');
     } catch(err) {
-      console.log(err);
       if(err.response.status === 400) toast.error(err.response.data);
     }
   };
