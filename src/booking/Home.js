@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
 import {allGlampings} from '../actions/glamping'
-import BgGlassmorphism from '../components/BgGlassmorphism/BgGlassmorphism';
+// import BgGlassmorphism from '../components/BgGlassmorphism/BgGlassmorphism';
 import SmallCard from '../components/cards/SmallCard'
 import Search from '../components/forms/Search';
-import styled from 'styled-components';
-import tw from 'twin.macro';
+// import styled from 'styled-components';
+// import tw from 'twin.macro';
 
 const Home = () => {
   const [glampings, setGlampings] = useState([])
@@ -20,20 +20,20 @@ const Home = () => {
 
   // style
 
-  const PageContainer = styled.div`
-    ${tw`
-      relative
-      overflow-hidden
-    `};
-  `;
+  // const PageContainer = styled.div`
+  //   ${tw`
+  //     relative
+  //     overflow-hidden
+  //   `};
+  // `;
 
-  const SectionContainer = styled.div`
-    ${tw`
-      container
-      relative
-      overflow-hidden
-    `};
-  `;
+  // const SectionContainer = styled.div`
+  //   ${tw`
+  //     container
+  //     relative
+  //     overflow-hidden
+  //   `};
+  // `;
 
 
 
