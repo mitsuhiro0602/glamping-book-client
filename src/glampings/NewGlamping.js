@@ -59,10 +59,8 @@ const NewGlamping = () => {
     glampingData.append('from', from)
     glampingData.append('to', to)
     glampingData.append('person', person)
-     
     try {
-      let res = await createGlamping(token, glampingData)
-      console.log('GLAMPING CREATE RES' ,res)
+      await createGlamping(token, glampingData)
       toast.success('新しいグランピング施設を登録しました')
       setTimeout(() => {
         window.location.reload();
