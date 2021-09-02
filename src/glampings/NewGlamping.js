@@ -66,6 +66,7 @@ const NewGlamping = () => {
         window.location.reload();
       }, 1000)
     } catch(err) {
+      console.log(err)
       toast.error(err.response.data);
     }
   }
