@@ -21,7 +21,6 @@ const DashBoard = () => {
 
   const loadUserBookings = async () => {
     const res = await userGlampingBookings(token);
-    console.log(res.data);
     setBooking(res.data);
   }
   return (

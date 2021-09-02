@@ -10,11 +10,9 @@ const StripeSuccess = ({match, history}) => {
   } = useSelector((state) => ({ ...state }));
 
   useEffect(() => {
-    console.log('send this glampingid to bakend to create order', match.params.glampingId)
     stripeSuccessRequest(token, match.params.glampingId)
     .then(res => {
       if(res.data.success) {
-        // console.log("stripe success response", res.data)
         history.push('/dashboard');
       } else {
         history.push('/stripe/cancel');

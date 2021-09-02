@@ -50,17 +50,15 @@ const GlampingEditForm = (
             className="form-control m-2" 
             value={content} 
           />
-          { location && location.length && 
-            <input 
-              type="text"
-              name="location"
-              onChange={handleChange}
-              className="form-control m-2"
-              placeholder="Location"
-              value={location}
-              style={{ height: "50px" }}
-            />
-          }
+          <input 
+            type="text"
+            name="location"
+            onChange={handleChange}
+            className="form-control m-2"
+            placeholder="Location"
+            value={location}
+            style={{ height: "50px" }}
+          />
           <input 
             type="number" 
             name="price" 

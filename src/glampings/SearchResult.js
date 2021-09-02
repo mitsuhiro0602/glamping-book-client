@@ -10,9 +10,7 @@ const SearchResult = () => {
 
   useEffect(() => {
     const {location, date, person} = queryString.parse(window.location.search);
-    console.table({ location, date, person})
     searchListings({location, date, person}).then(res => {
-      console.log('SEARCH RESULTS ===>>', res.data);
       setGlampings(res.data)
     })
   // eslint-disable-next-line react-hooks/exhaustive-deps

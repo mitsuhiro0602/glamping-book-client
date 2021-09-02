@@ -22,7 +22,6 @@ const ConnectNav = () => {
 
   useEffect(() => {
     getAccountBalance(auth.token).then(res => {
-      // console.log(res);
       setBalance(res.data);
     });
   // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -32,11 +31,9 @@ const ConnectNav = () => {
     setLoading(true)
     try {
       const res = await payoutSetting(token);
-      // console.log('RES FOR PAYOUT SETTING LINK', res);
       window.location.href = res.data.url;
       setLoading(false);
     } catch (err) {
-      console.log(err)
       setLoading(false)
       toast('Unable to access setting. Try again');
     }
