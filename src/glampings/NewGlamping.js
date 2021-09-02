@@ -62,6 +62,7 @@ const NewGlamping = () => {
      
     try {
       let res = await createGlamping(token, glampingData)
+      console.log('GLAMPING CREATE RES' ,res)
       toast.success('新しいグランピング施設を登録しました')
       setTimeout(() => {
         window.location.reload();
