@@ -11,8 +11,7 @@ const Register = ({ history }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // eslint-disable-next-line no-unused-vars
-      const res = await register({
+      await register({
         name,
         email, 
         password
