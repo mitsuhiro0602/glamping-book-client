@@ -18,44 +18,6 @@ const LocationInput = ({
 
   const [showPopover, setShowPopover] = useState(autoFocus)
 
-  useEffect(() => {
-    setValue(defaultValue);
-  }, [defaultValue]);
-
-  useEffect(() => {
-    setShowPopover(autoFocus);
-  }, [autoFocus]);
-
-  useEffect(() => {
-    if (eventClickOutsideDiv) {
-      document.removeEventListener("click", eventClickOutsideDiv);
-    }
-    showPopover && document.addEventListener("click", eventClickOutsideDiv);
-    return () => {
-      document.removeEventListener("click", eventClickOutsideDiv);
-    };
-  }, [showPopover]);
-
-  useEffect(() => {
-    onChange && onChange(value);
-  }, [value]);
-
-  useEffect(() => {
-    if (showPopover && inputRef.current) {
-      inputRef.current.focus();
-    }
-  }, [showPopover]);
-
-  const eventClickOutsideDiv = (event) => {
-    if (!containerRef.current) return;
-    // CLICK IN_SIDE
-    if (!showPopover || containerRef.current.contains(event.target)) {
-      return;
-    }
-    // CLICK OUT_SIDE
-    setShowPopover(false);
-  };
-
   const handleSelectLocation = (item) => {
     setValue(item);
     setShowPopover(false);
@@ -79,7 +41,8 @@ const LocationInput = ({
 
   const SearchContainer = styled.div`
     ${tw`
-      mt-2
+      mt-4
+      mr-3
     `};
   `;
 
@@ -126,6 +89,7 @@ const LocationInput = ({
     ${tw`
       relative
       flex
+      w-1/2
     `};
   `;
 
