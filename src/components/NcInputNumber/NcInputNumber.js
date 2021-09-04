@@ -56,7 +56,6 @@ const NcInputNumber = ({
 
   const NcInputContainer = styled.div`
     ${tw`
-      nc-NcInputNumber
       flex
       items-center
       justify-between
@@ -66,7 +65,6 @@ const NcInputNumber = ({
 
   const NcInputInner = styled.div`
     ${tw`
-      nc-NcInputNumber
       flex
       items-center
       justify-between

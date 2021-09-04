@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState,useRef } from 'react'
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import ClearDataButton from './ClearDataButton';
@@ -8,38 +8,57 @@ const LocationInput = ({
   defaultValue,
   autoFocus = false,
   onChange,
-  onInputDone,
-  placeholder = "場所を入力してください",
-  desc = "どこにいきたいですか？"
+  placeHolder = "場所を入力してください",
+  desc = ""
 }) => {
 
+  const containerRef = useRef(null);
+  const inputRef = useRef(null)
   const [value, setValue] = useState(defaultValue);
 
-  const [ShowPopver, setShowPopver] = useState(autoFocus)
+  const [showPopover, setShowPopover] = useState(autoFocus)
 
   useEffect(() => {
-    setShowPopver(autoFocus)
-  }, [autoFocus])
+    setValue(defaultValue);
+  }, [defaultValue]);
 
-  useEffect(() =>{
-    if(eventClickOutsideDiv) {
-      // eslint-disable-next-line no-whitespace-before-property
-      document.removeEventListener("click". eventClickOutsideDiv);
+  useEffect(() => {
+    setShowPopover(autoFocus);
+  }, [autoFocus]);
+
+  useEffect(() => {
+    if (eventClickOutsideDiv) {
+      document.removeEventListener("click", eventClickOutsideDiv);
     }
-    ShowPopver && document.addEventListener("click", eventClickOutsideDiv)
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ShowPopver])
+    showPopover && document.addEventListener("click", eventClickOutsideDiv);
+    return () => {
+      document.removeEventListener("click", eventClickOutsideDiv);
+    };
+  }, [showPopover]);
+
+  useEffect(() => {
+    onChange && onChange(value);
+  }, [value]);
+
+  useEffect(() => {
+    if (showPopover && inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [showPopover]);
 
   const eventClickOutsideDiv = (event) => {
-    if(!ShowPopver) {
+    if (!containerRef.current) return;
+    // CLICK IN_SIDE
+    if (!showPopover || containerRef.current.contains(event.target)) {
       return;
     }
-    setShowPopver(false);
+    // CLICK OUT_SIDE
+    setShowPopover(false);
   };
 
   const handleSelectLocation = (item) => {
-    onInputDone && onInputDone(item);
-    setShowPopver(false)
+    setValue(item);
+    setShowPopover(false);
   };
 
   // style
@@ -103,12 +122,18 @@ const LocationInput = ({
     `};
   `;
 
+  const SearchInputMainContainer = styled.div`
+    ${tw`
+      relative
+      flex
+    `};
+  `;
+
   const SearchInput = styled.div`
     ${tw`
       flex
       flex-1
       relative
-      [nc-hero-field-padding]
       flex-shrink-0
       items-center
       space-x-3
@@ -131,23 +156,6 @@ const LocationInput = ({
     `};
   `;
 
-  const SearchInputMain = styled.div`
-    ${tw`
-      block
-      w-full
-      bg-transparent
-      border-none
-      focus:ring-0
-      p-0
-      focus:outline-none
-      focus:placeholder-neutral-300
-      xl:text-lg
-      font-semibold
-      placeholder-neutral-800
-      dark:placeholder-neutral-200
-      truncate
-    `};
-  `;
 
   const SearchInputMainSpan = styled.span`
     ${tw`
@@ -199,7 +207,8 @@ const LocationInput = ({
             "東京都新宿区"
           ].map((item) => (
             <SearchInputSpan
-              onCLick={() => handleSelectLocation(item)}
+              onClick={() => handleSelectLocation(item)}
+              key={item}
             >
               <SearchInputSpanIcon>
                 <svg
@@ -268,62 +277,61 @@ const LocationInput = ({
     )
   }
   return (
-    <SearchInput
-      onClick={() => setShowPopver(true)}
-      className={`
-        ${ShowPopver ? 
-          "shadow-2xl rounded-full dark:bg-neutral-800" 
-        : ""
-        }`
-      }
-    >
-      <SearchInputTextContainer>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="nc-icon-field"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-          />
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={1.5}
-            d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-          />
-        </svg>
-      </SearchInputTextContainer>
-      <SearchInputFlexGrow>
-        <SearchInputMain
-          placeholder={placeholder}
-          value={value}
-          autoFocus={ShowPopver}
-          onChange={(e) => setValue(e.currentTarget.value)}
-        >
-          <SearchInputMainSpan>
-            <SearchInputLine>
-              {!!value ? placeholder : desc}
-            </SearchInputLine>
-          </SearchInputMainSpan>
-          {value && ShowPopver && (
-            <ClearDataButton 
-              onClick={() => setValue("")}
+    <SearchInputMainContainer ref={containerRef}>
+      <SearchInput
+        onClick={() => setShowPopover(true)}
+        className={`
+          ${showPopover ? 
+            "shadow-2xl rounded-full dark:bg-neutral-800" 
+          : ""
+          }`
+        }
+      >
+        <SearchInputTextContainer>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="nc-icon-field"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
             />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={1.5}
+              d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
+            />
+          </svg>
+        </SearchInputTextContainer>
+        <SearchInputFlexGrow>
+          <input
+            className={`block w-full bg-transparent border-none focus:ring-0 p-0 focus:outline-none focus:placeholder-neutral-300 xl:text-md placeholder-neutral-800 dark:placeholder-neutral-200 truncate`}
+            placeholder={placeHolder}
+            value={value}
+            autoFocus={showPopover}
+            onChange={(e) => setValue(e.currentTarget.value)}
+            ref={inputRef}
+          />
+          <SearchInputMainSpan>
+            <SearchInputLine>{!!value ? placeHolder : desc}</SearchInputLine>
+          </SearchInputMainSpan>
+          {value && showPopover && (
+            <ClearDataButton onClick={() => setValue("")} />
           )}
-        </SearchInputMain>
-      </SearchInputFlexGrow>
-      {ShowPopver && (
-        <SearchRecentBox>
-          {value ? SearchValue() : RecentSearch()}
-        </SearchRecentBox>
-      )}
-    </SearchInput>
+        </SearchInputFlexGrow>
+        {showPopover && (
+          <SearchRecentBox>
+            {value ? SearchValue() : RecentSearch()}
+          </SearchRecentBox>
+        )}
+      </SearchInput>
+    </SearchInputMainContainer>
   );
 };
 

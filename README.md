@@ -49,6 +49,12 @@ DB：mongoDB(mongoDBAtlas)
 ***
 ***
 
+## 詳細画面
+  
+![グランピング施設登録画面](https://gyazo.com/ca30862ef45212d5518c683783f1dc91)  
+![stripe決済](https://gyazo.com/4b8ac110dd3ff0dcc92dddd636bfa77b)  
+![明細確認画面](https://gyazo.com/019d21706ea08b5349141c3449e7d189)  
+
 ## 機能一覧
 
 ### 新規登録、ログイン

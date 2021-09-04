@@ -12,7 +12,7 @@ import { DateRage } from "./StaySearchForm";
 // eslint-disable-next-line no-unused-vars
 import { FC } from "react";
 import ClearDataButton from "./ClearDataButton";
-import useWindowSize from "hooks/useWindowResize";
+import useWindowSize from "../../hooks/useWindowResize";
 import tw from 'twin.macro';
 
 const StayDatesRangeInput = ({
@@ -20,7 +20,6 @@ const StayDatesRangeInput = ({
   onChange,
   defaultFocus = null,
   onFocusChange,
-  fieldClassName = "[ nc-hero-field-padding ]",
   wrapClassName = "divide-y divide-neutral-200 lg:divide-y-0 md:border-l md:border-r border-neutral-200 lg:border-none",
   numberOfMonths,
   anchorDirection,
@@ -76,7 +75,6 @@ const StayDatesRangeInput = ({
       space-x-3
       cursor-pointer
     `};
-    ${fieldClassName}
   `;
 
   const DateInputTextContainer = styled.div`
@@ -117,7 +115,6 @@ const StayDatesRangeInput = ({
       flex-shrink-0
       flex
       z-10
-      [ lg:nc-flex-2 ]
     `};
   `;
 
@@ -231,8 +228,8 @@ const StayDatesRangeInput = ({
   }
   return (
     <DateInputContainer>
-      <DateInputInner>
-        <DateRangePicker 
+      {/* <DateInputInner> */}
+        {/* <DateRangePicker 
           startDate={stateDate.startDate}
           endDate={stateDate.endDate}
           focusedInput={focusedInput}
@@ -254,8 +251,9 @@ const StayDatesRangeInput = ({
       </DateInputInner>
       <DateInputFlex>
         {InputCheckInDate()}
-        {InputCheckOutDate()}
-      </DateInputFlex>
+        {InputCheckOutDate()} */}
+      {/* </DateInputFlex> */}
+      テストこ
     </DateInputContainer>
   )
 }
