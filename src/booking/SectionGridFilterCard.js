@@ -33,10 +33,11 @@ const SectionGridFilterCard = () => {
   const GridSectionContainer = styled.div`
     ${tw`
       grid
-      grid-cols-2
+      grid-cols-1
       gap-2
       md:gap-8
       sm:grid-cols-1
+      md:grid-cols-1
       xl:grid-cols-2
     `};
   `;
