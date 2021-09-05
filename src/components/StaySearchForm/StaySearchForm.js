@@ -2,8 +2,7 @@
 import React, {useState} from 'react'
 import styled from 'styled-components'
 import LocationInput from './LocationInput';
-import {DatePicker, Select, Input} from 'antd';
-import ButtonSubmit from './ButtonSubmit';
+import {DatePicker, Select} from 'antd';
 import moment from 'moment'
 import tw from 'twin.macro'
 import { useHistory } from 'react-router-dom';

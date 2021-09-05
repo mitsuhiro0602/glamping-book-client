@@ -6,6 +6,7 @@ import Search from '../components/forms/Search';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 import SectionHeroArchivePage from '../components/SectionHeroArchivePage/SectionHeroArchivePage';
+import SectionGridFilterCard from './SectionGridFilterCard';
 
 const Home = () => {
   const [glampings, setGlampings] = useState([])
@@ -45,7 +46,16 @@ const Home = () => {
       <h1 className="text-center">グランピング施設一覧</h1>
       <BgGlassmorphism />
       <SectionContainer>
-        <SectionHeroArchivePage />
+        <SectionHeroArchivePage
+          className="pt-10 pb-24 lg:pb-32 lg:pt-28"
+        />
+        <SectionGridFilterCard glampings={glampings} />
+        {/* {glampings.map((glamping) => (
+          <SmallCard 
+            key={glamping._id} 
+            glamping={glamping} 
+          />
+        ))} */}
       </SectionContainer>
     </PageContainer>
   )
@@ -61,8 +71,8 @@ const Home = () => {
   //     </div>
   //     <div className="container-fluid">
   //       <br />
-  //       {glampings.map((g) => (
-  //         <SmallCard key={g._id} g={g} />
+  //       {glampings.map((glamping) => (
+  //         <SmallCard key={glamping._id} glamping={glamping} />
   //       ))}
   //     </div>
   //   </>
