@@ -1,10 +1,22 @@
 import React from "react";
 import styled from "styled-components";
 import tw from "twin.macro";
+import { useHistory } from 'react-router-dom';
 
-const ButtonSubmit = () => {
+    
+const ButtonSubmit = ({
+  location,
+  date,
+  person
+}) => {
+  const history = useHistory()
 
-  const SearchButton = styled.div`
+  const handleSubmit = () => {
+    console.log('test')
+    history.push(`/search-result?location=${location}&date=${date}&person=${person}`);
+  }
+
+  const SearchButton = styled.button`
     ${tw`
       h-14
       md:h-16 
@@ -18,27 +30,27 @@ const ButtonSubmit = () => {
       justify-center 
       text-neutral-50 
       focus:outline-none
+      text-neutral-50
+      hover:bg-indigo-700
+      bg-indigo-400
     `};
   `;
 
-  const SearchButtonText = styled.div`
+  const SearchButtonText = styled.span`
     ${tw`
       mr-3
       md:hidden
     `};
   `;
   return (
-    <SearchButton
-      type="button"
-      className="h-14 md:h-16 w-full md:w-16 rounded-full bg-primary-6000 hover:bg-primary-700 flex items-center justify-center text-neutral-50 focus:outline-none"
-    >
+    <SearchButton type="button" onClick={handleSubmit}>
       <SearchButtonText>Search</SearchButtonText>
       <svg
         xmlns="http://www.w3.org/2000/svg"
         className="h-6 w-6"
         fill="none"
         viewBox="0 0 24 24"
-        stroke="currentColor"
+        stroke="white"
       >
         <path
           strokeLinecap="round"
