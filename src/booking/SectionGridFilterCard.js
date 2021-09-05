@@ -3,7 +3,6 @@ import styled from 'styled-components';
 import tw from 'twin.macro';
 import StayCard from '../components/StayCard/StayCard';
 import {allGlampings} from '../actions/glamping'
-import SmallCard from '../components/cards/SmallCard';
 
 const SectionGridFilterCard = () => {
 
@@ -53,9 +52,6 @@ const SectionGridFilterCard = () => {
         {glampings.map((glamping) => (
           <StayCard key={glamping._id} glamping={glamping} />
         ))}
-        {/* {glampings.map((glamping) => (
-          <SmallCard key={glamping._id} glamping={glamping} />
-        ))} */}
       </GridSectionContainer>
     </SectionContainer>
   )

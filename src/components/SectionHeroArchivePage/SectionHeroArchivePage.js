@@ -1,12 +1,8 @@
 import React from 'react'
-// eslint-disable-next-line no-unused-vars
 import styled from 'styled-components'
-// eslint-disable-next-line no-unused-vars
 import imagePng from '../../images/hero-right-2.png';
-// eslint-disable-next-line no-unused-vars
 import StaySearchForm from '../StaySearchForm/StaySearchForm';
 import tw from 'twin.macro';
-import Search from '../forms/Search';
 
 const SectionHeroArchivePage = () => {
 
@@ -104,7 +100,6 @@ const SectionHeroArchivePage = () => {
         <SearchContainer>
           <SearchInner>
             <StaySearchForm />
-            {/* <Search /> */}
           </SearchInner>
         </SearchContainer>
       </SectionHeroArchiveContainer>

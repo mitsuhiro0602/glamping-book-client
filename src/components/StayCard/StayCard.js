@@ -1,15 +1,9 @@
 import React from 'react'
-import Image from 'react-image-resizer';
-import {currencyFormatter} from '../../actions/stripe'
 import { diffDays } from "../../actions/glamping";
-import moment from 'moment';
-import { Link, useHistory } from 'react-router-dom';
-import {EditOutlined, DeleteOutlined} from '@ant-design/icons'
+import { useHistory } from 'react-router-dom';
 
 import styled from 'styled-components';
 import tw from 'twin.macro';
-import { stringLiteral } from '@babel/types';
-import NcImage from '../NcImage/NcImage';
 
 const StayCard = ({
   size = "default",
@@ -27,23 +21,11 @@ const StayCard = ({
     _id,
     image,
     price,
-    location,
-    person
-  } = glamping;
-
-  const fromTime = moment(from).format('YYYY-MM-DD')
-  const toTime = moment(to).format('YYYY-MM-DD')
-  console.log(glamping)
+    location  } = glamping;
 
   const history = useHistory();
 
   // style
-  const SliderGalleryContainer = styled.div`
-    ${tw`
-      relative
-      w-full
-    `};
-  `;
 
   const GalleryContent = styled.div`
     ${tw`
@@ -277,8 +259,8 @@ const StayCard = ({
               )}
             </PriceSpan>
             <DaySpan>
-              for {diffDays(glamping.from, glamping.to)}{" "}
-                  {diffDays(glamping.from, glamping.to) <= 1 ? 'day' : 'days'}
+              for {diffDays(from, to)}{" "}
+                  {diffDays(from, to) <= 1 ? 'day' : 'days'}
             </DaySpan>
 
           </PriceContainer>
