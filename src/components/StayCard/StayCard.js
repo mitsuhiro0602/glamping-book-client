@@ -5,6 +5,10 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
+import mediaQuery from "styled-media-query";
+
+const mediaMobile = mediaQuery.lessThan("medium");
+
 const StayCard = ({
   size = "default",
   glamping,
@@ -130,19 +134,27 @@ const StayCard = ({
   `;
 
   const CardImageContainer = styled.div`
-    height: 600px !important;
+    height: 600px
+    ${mediaMobile`
+      height: 300px
+    `},
     ${tw`
       relative
       w-full
+      sm:max-h-80
     `};
   `;
 
   const CardImage = styled.img`
-    height: 600px !important;
+    height: 600px
+    ${mediaMobile`
+      height: 300px
+    `},
     ${tw`
       w-full
       sm:max-w-full
       object-cover
+      sm:max-h-80
     `};
   `;
 
