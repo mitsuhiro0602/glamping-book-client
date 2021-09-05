@@ -20,7 +20,6 @@ const SectionGridFilterCard = () => {
     ${tw`
       pb-24
       lg:pb-32
-      bg-gray-200
     `};
   `;
 
@@ -28,7 +27,6 @@ const SectionGridFilterCard = () => {
     ${tw`
       mb-8
       lg:mb-11
-      bg-gray-200
     `};
   `;
 
@@ -40,7 +38,6 @@ const SectionGridFilterCard = () => {
       md:gap-8
       sm:grid-cols-1
       xl:grid-cols-2
-      bg-gray-100
     `};
   `;
   return (

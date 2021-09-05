@@ -12,7 +12,6 @@ const SectionHeroArchivePage = () => {
       pb-24
       lg:pb-32
       lg:pt-28
-      bg-gray-200
     `};
   `;
 
@@ -21,7 +20,6 @@ const SectionHeroArchivePage = () => {
       flex
       flex-col
       relative
-      bg-gray-400
     `};
   `;
 
@@ -31,7 +29,6 @@ const SectionHeroArchivePage = () => {
       flex-col
       lg:flex-row
       lg:items-center
-      bg-gray-600
     `};
   `;
 
@@ -49,7 +46,6 @@ const SectionHeroArchivePage = () => {
       xl:pb-80
       xl:pr-14
       xl:mr-0
-      bg-gray-800
     `};
   `;
 
