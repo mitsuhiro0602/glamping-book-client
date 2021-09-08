@@ -5,10 +5,6 @@ import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import tw from 'twin.macro';
 
-import mediaQuery from "styled-media-query";
-
-const mediaMobile = mediaQuery.lessThan("medium");
-const mediaPc = mediaQuery.greaterThan("large")
 
 const StayCard = ({
   size = "default",

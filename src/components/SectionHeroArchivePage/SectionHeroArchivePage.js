@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import imagePng from '../../images/hero-right-2.png';
+import imagePng from '../../images/hero-right-2.jpg';
 import StaySearchForm from '../StaySearchForm/StaySearchForm';
 import tw from 'twin.macro';
 
